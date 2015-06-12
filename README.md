@@ -1,2 +1,1 @@
-# dfe-partner
-DreamFactory Enterprise(tm) Partner Library
+## DreamFactory Enterprise(tm) Partner Services Library v0.1.x-dev
