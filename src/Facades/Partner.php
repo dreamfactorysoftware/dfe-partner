@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static BrandDecorator brand(string $partnerId);
  * @method static PartnerManager register(string $partnerId, BusinessPartner $partner);
  * @method static PartnerManager unregister(string $partnerId);
+ * @method static BusinessPartner resolve(string $partnerId);
  * @method static mixed request(string $partnerId, $request = []);
  *
  */

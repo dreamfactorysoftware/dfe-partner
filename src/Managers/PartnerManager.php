@@ -3,6 +3,7 @@
 use DreamFactory\Enterprise\Common\Managers\BaseManager;
 use DreamFactory\Enterprise\Partner\Contracts\BusinessPartner;
 use DreamFactory\Enterprise\Partner\Exceptions\PartnerException;
+use DreamFactory\Enterprise\Partner\Partner;
 use Illuminate\Http\Response;
 
 class PartnerManager extends BaseManager
@@ -11,6 +12,13 @@ class PartnerManager extends BaseManager
     //* Methods
     //******************************************************************************
 
+    /**
+     * @param string      $partnerId
+     * @param string|null $key
+     * @param mixed       $default
+     *
+     * @return array|mixed
+     */
     public function config($partnerId, $key = null, $default = null)
     {
         /** @type BusinessPartner $_partner */
@@ -35,7 +43,7 @@ class PartnerManager extends BaseManager
     /**
      * Register a partner with the system
      *
-     * @param string                                                      $partnerId
+     * @param string                                                     $partnerId
      * @param \DreamFactory\Enterprise\Partner\Contracts\BusinessPartner $partner
      *
      * @return $this

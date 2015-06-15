@@ -1,33 +1,13 @@
 <?php namespace DreamFactory\Enterprise\Partner;
 
 use DreamFactory\Enterprise\Partner\Contracts\BrandDecorator;
-use DreamFactory\Enterprise\Partner\Contracts\BusinessPartner;
 use Illuminate\Support\Collection;
 
 class PartnerBrand extends Collection implements BrandDecorator
 {
     //******************************************************************************
-    //* Members
-    //******************************************************************************
-
-    /**
-     * @type \DreamFactory\Enterprise\Partner\Contracts\BusinessPartner
-     */
-    protected $partner;
-
-    //******************************************************************************
     //* Methods
     //******************************************************************************
-
-    /**
-     * @param \DreamFactory\Enterprise\Partner\Contracts\BusinessPartner $partner The partner
-     * @param array                                                      $brand   Brand info
-     */
-    public function __construct(BusinessPartner $partner, $brand = [])
-    {
-        parent::__construct($brand);
-        $this->partner = $partner;
-    }
 
     /**
      * Return the brand logo for rendering
@@ -105,7 +85,7 @@ class PartnerBrand extends Collection implements BrandDecorator
             $minimal
                 ? $key . '-minimal'
                 : $key,
-            $this->partner->getPartnerDetail($defaultKey ?: $key)
+            $this->get($defaultKey ?: $key)
         );
     }
 }
