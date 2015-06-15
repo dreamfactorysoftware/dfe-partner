@@ -2,8 +2,9 @@
 
 use DreamFactory\Enterprise\Partner\Contracts\BrandDecorator;
 use DreamFactory\Enterprise\Partner\Contracts\BusinessPartner;
+use Illuminate\Support\Collection;
 
-class PartnerBrand implements BrandDecorator
+class PartnerBrand extends Collection implements BrandDecorator
 {
     //******************************************************************************
     //* Members
@@ -20,9 +21,11 @@ class PartnerBrand implements BrandDecorator
 
     /**
      * @param \DreamFactory\Enterprise\Partner\Contracts\BusinessPartner $partner The partner
+     * @param array                                                      $brand   Brand info
      */
-    public function __construct(BusinessPartner $partner)
+    public function __construct(BusinessPartner $partner, $brand = [])
     {
+        parent::__construct($brand);
         $this->partner = $partner;
     }
 
@@ -35,9 +38,9 @@ class PartnerBrand implements BrandDecorator
      */
     public function getLogo($asIcon = false)
     {
-        return $this->partner->getPartnerDetail(
-            $asIcon ? 'brand.icon' : 'brand.logo',
-            $this->partner->getPartnerDetail('brand.logo')
+        return $this->get(
+            $asIcon ? 'icon' : 'logo',
+            $this->get('logo')
         );
     }
 
@@ -50,7 +53,7 @@ class PartnerBrand implements BrandDecorator
      */
     public function getCopyright($minimal = false)
     {
-        return $this->getSizedDetail('brand.copyright', $minimal);
+        return $this->getSizedDetail('copyright', $minimal);
     }
 
     /**
@@ -62,7 +65,7 @@ class PartnerBrand implements BrandDecorator
      */
     public function getCopy($minimal = false)
     {
-        return $this->getSizedDetail('brand.copy', $minimal);
+        return $this->getSizedDetail('copy', $minimal);
     }
 
     /**
@@ -74,7 +77,7 @@ class PartnerBrand implements BrandDecorator
      */
     public function getName($minimal = true)
     {
-        return $this->getSizedDetail('brand.name', $minimal);
+        return $this->getSizedDetail('name', $minimal);
     }
 
     /**
@@ -86,7 +89,7 @@ class PartnerBrand implements BrandDecorator
      */
     public function getDescription($minimal = true)
     {
-        return $this->getSizedDetail('brand.description', $minimal);
+        return $this->getSizedDetail('description', $minimal);
     }
 
     /**
@@ -98,7 +101,7 @@ class PartnerBrand implements BrandDecorator
      */
     protected function getSizedDetail($key, $minimal = false, $defaultKey = null)
     {
-        return $this->partner->getPartnerDetail(
+        return $this->get(
             $minimal
                 ? $key . '-minimal'
                 : $key,

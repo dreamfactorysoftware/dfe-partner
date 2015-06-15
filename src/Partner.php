@@ -60,7 +60,7 @@ class Partner extends Collection implements BusinessPartner
         }
 
         if (is_array($_brand)) {
-            $this->put('brand', $_brand = new PartnerBrand($this));
+            $this->put('brand', $_brand = new PartnerBrand($this, config('partner.' . $this->partnerId . '.brand')));
         }
 
         return $_brand;

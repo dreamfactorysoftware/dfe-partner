@@ -27,6 +27,11 @@ class PartnerServiceProvider extends BaseServiceProvider
             /** @noinspection PhpIncludeInspection */
             include $_routeFile;
         }
+
+        //  Config
+        if (file_exists($_configFile = realpath(__DIR__ . '/../../config') . DIRECTORY_SEPARATOR . 'partner.php')) {
+            $this->publishes([$_configFile => config_path('partner.php'),], 'config');
+        }
     }
 
     /** @inheritdoc */
@@ -38,11 +43,6 @@ class PartnerServiceProvider extends BaseServiceProvider
                 return new PartnerManager($app);
             }
         );
-
-        //  Config
-        if (file_exists($_configFile = realpath(__DIR__ . '/../../config') . DIRECTORY_SEPARATOR . 'partner.php')) {
-            $this->publishes([$_configFile => config_path('partner.php'),], 'config');
-        }
     }
 
     /** @inheritdoc */
