@@ -21,7 +21,7 @@ class PartnerController extends BaseController
      */
     public function index(Request $request)
     {
-        abort(403);
+        echo 'Ah, you made it.';
     }
 
 }
