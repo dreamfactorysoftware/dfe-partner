@@ -22,8 +22,10 @@ class PartnerServiceProvider extends BaseServiceProvider
     /** @inheritdoc */
     public function boot()
     {
+        $_configPath = realpath(__DIR__ . '/../../config');
+
         //  Add our routes...
-        if (file_exists($_routeFile = realpath(__DIR__ . '/../../config') . DIRECTORY_SEPARATOR . 'routes.php')) {
+        if (file_exists($_routeFile = $_configPath . DIRECTORY_SEPARATOR . 'routes.php')) {
             //  Bind auth.partner
             $this->singleton('auth.partner',
                 'DreamFactory\\Enterprise\\Partner\\Http\\Middleware\\AuthenticatePartner');
@@ -33,9 +35,11 @@ class PartnerServiceProvider extends BaseServiceProvider
         }
 
         //  Config
-        if (file_exists($_configFile = realpath(__DIR__ . '/../../config') . DIRECTORY_SEPARATOR . 'partner.php')) {
+        if (file_exists($_configFile = $_configPath . DIRECTORY_SEPARATOR . 'partner.php')) {
             $this->publishes([$_configFile => config_path('partner.php'),], 'config');
         }
+
+        $this->publishes([$_configPath . '/assets' => public_path('/vendor/dfe-partner')], 'public');
     }
 
     /** @inheritdoc */
