@@ -24,8 +24,6 @@ class PartnerController extends BaseController
      */
     public function handleRequest(Request $request, $pid)
     {
-        \Log::debug('partner request: ' . print_r($request->input(), true));
-
         try {
             return \Partner::request($pid, $request);
         } catch (\Exception $_ex) {

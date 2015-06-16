@@ -40,6 +40,12 @@ class PartnerServiceProvider extends BaseServiceProvider
         }
 
         $this->publishes([$_configPath . '/assets' => public_path('/vendor/dfe-partner')], 'public');
+
+        foreach (config('partner', []) as $_pid => $_config) {
+            if (isset($_config['class'])) {
+                \Partner::register($_pid, new $_config['class']($_pid, $_config));
+            }
+        }
     }
 
     /** @inheritdoc */

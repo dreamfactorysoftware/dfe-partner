@@ -1,10 +1,8 @@
 <?php namespace DreamFactory\Enterprise\Partner;
 
-use DreamFactory\Enterprise\Common\Packets\ErrorPacket;
 use DreamFactory\Enterprise\Partner\Contracts\BrandDecorator;
 use DreamFactory\Enterprise\Partner\Contracts\BusinessPartner;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 
 class Partner extends Collection implements BusinessPartner
@@ -78,7 +76,22 @@ class Partner extends Collection implements BusinessPartner
      */
     public function getPartnerResponse(Request $request)
     {
-        return ErrorPacket::create(Response::HTTP_BAD_REQUEST);
+        //  Do stuff here
+        //  Stop doing stuff here...
+
+        //  either redirect somewhere else
+        if (null !== ($_redirect = $this->get('redirect-uri'))) {
+            return \Redirect::to($_redirect);
+        }
+
+        //  or redirect back
+        return \Redirect::back();
+
+        //  or return success in JSON
+        //return SuccessPacket::make(['stuff' => 'value'], Response::HTTP_OK);
+
+        //  or return error in JSON
+        //return ErrorPacket::create(Response::HTTP_BAD_REQUEST, 'You did something naughty.');
     }
 
 }

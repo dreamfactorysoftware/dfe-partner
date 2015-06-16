@@ -5,11 +5,11 @@
 return [
     'partner-id' => [
         //  Short name of the partner
-        'name'         => 'Partner',
+        'name'          => 'Partner',
         //  Allowed referrer TLDs to talk to partner (keep hubspot and df in there)
-        'referrers'    => ['partner.com', 'hubspot.com', 'dreamfactory.com'],
+        'referrers'     => ['partner.com', 'hubspot.com', 'dreamfactory.com'],
         //  Allowed commands for this partner. Not required, but helpful if you wish to use a single endpoint
-        'commands'     => [
+        'commands'      => [
             //  Just a command name
             'command-1',
             'command-2',
@@ -17,11 +17,13 @@ return [
             ['command' => 'command-3', 'option1' => 'value1', 'option2' => 'value2'],
         ],
         //  An optional description of the partner
-        'description'  => 'A proud partner of DreamFactory Software, Inc.',
+        'description'   => 'A proud partner of DreamFactory Software, Inc.',
         //  Optional redirect URL for after-request send-off
-        'redirect-uri' => null,
+        'redirect-uri'  => null,
+        //  A bootstrap3 context used by the AlertPartner class
+        'alert-context' => 'alert-info',
         //  Branding information for content
-        'brand'        => [
+        'brand'         => [
             //  Logo, size doesn't matter. Resize with css
             'logo'      => '/logo/uri',
             //  Icon, again, same thing as above with size
