@@ -39,7 +39,7 @@ class PartnerServiceProvider extends BaseServiceProvider
             $this->publishes([$_configFile => config_path('partner.php'),], 'config');
         }
 
-        $this->publishes([$_configPath . '/assets' => public_path('/vendor/dfe-partner')], 'public');
+        $this->publishes([$_configPath . '/assets' => public_path('/vendor/dfe-partner/assets')], 'public');
 
         foreach (config('partner', []) as $_pid => $_config) {
             if (isset($_config['class'])) {
