@@ -1,5 +1,7 @@
 <?php namespace DreamFactory\Enterprise\Partner\Contracts;
 
+use Illuminate\Http\Request;
+
 interface BusinessPartner
 {
     //******************************************************************************
@@ -44,5 +46,5 @@ interface BusinessPartner
      *
      * @return mixed
      */
-    public function getPartnerResponse($request = []);
+    public function getPartnerResponse(Request $request);
 }

@@ -24,6 +24,10 @@ class PartnerServiceProvider extends BaseServiceProvider
     {
         //  Add our routes...
         if (file_exists($_routeFile = realpath(__DIR__ . '/../../config') . DIRECTORY_SEPARATOR . 'routes.php')) {
+            //  Bind auth.partner
+            $this->singleton('auth.partner',
+                'DreamFactory\\Enterprise\\Partner\\Http\\Middleware\\AuthenticatePartner');
+
             /** @noinspection PhpIncludeInspection */
             include $_routeFile;
         }

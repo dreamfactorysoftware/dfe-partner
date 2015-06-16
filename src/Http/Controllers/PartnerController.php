@@ -17,11 +17,27 @@ class PartnerController extends BaseController
     }
 
     /**
-     * @param Request $request
+     * @param Request $request The request
+     * @param string  $pid     The partner ID
+     *
+     * @return mixed
      */
-    public function index(Request $request)
+    public function handleRequest(Request $request, $pid)
     {
-        echo 'Ah, you made it.';
+        \Log::debug('partner request: ' . print_r($request->input(), true));
+
+        try {
+            return \Partner::request($pid, $request);
+        } catch (\Exception $_ex) {
+            //  Log and bail
+            \Log::error('Exception handling partner request: ' . $_ex->getMessage());
+
+            //  wtf
+            abort(404);
+        }
+
+        //  Not going to get here...
+        return false;
     }
 
 }

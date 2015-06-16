@@ -4,6 +4,7 @@ use DreamFactory\Enterprise\Partner\Contracts\BrandDecorator;
 use DreamFactory\Enterprise\Partner\Contracts\BusinessPartner;
 use DreamFactory\Enterprise\Partner\Managers\PartnerManager;
 use DreamFactory\Enterprise\Partner\Providers\PartnerServiceProvider;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static PartnerManager register(string $partnerId, BusinessPartner $partner);
  * @method static PartnerManager unregister(string $partnerId);
  * @method static BusinessPartner resolve(string $partnerId);
- * @method static mixed request(string $partnerId, $request = []);
+ * @method static mixed request(string $partnerId, Request $request);
  *
  */
 class Partner extends Facade

@@ -3,7 +3,7 @@
 use DreamFactory\Enterprise\Common\Managers\BaseManager;
 use DreamFactory\Enterprise\Partner\Contracts\BusinessPartner;
 use DreamFactory\Enterprise\Partner\Exceptions\PartnerException;
-use DreamFactory\Enterprise\Partner\Partner;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class PartnerManager extends BaseManager
@@ -68,13 +68,13 @@ class PartnerManager extends BaseManager
     /**
      * Handle a partner request
      *
-     * @param string $partnerId
-     * @param array  $request
+     * @param string  $partnerId
+     * @param Request $request
      *
      * @return mixed
      * @throws \DreamFactory\Enterprise\Partner\Exceptions\PartnerException
      */
-    public function request($partnerId, $request = [])
+    public function request($partnerId, Request $request)
     {
         try {
             /** @type BusinessPartner $_partner */

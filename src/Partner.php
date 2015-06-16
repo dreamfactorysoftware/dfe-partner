@@ -1,7 +1,10 @@
 <?php namespace DreamFactory\Enterprise\Partner;
 
+use DreamFactory\Enterprise\Common\Packets\ErrorPacket;
 use DreamFactory\Enterprise\Partner\Contracts\BrandDecorator;
 use DreamFactory\Enterprise\Partner\Contracts\BusinessPartner;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 
 class Partner extends Collection implements BusinessPartner
@@ -73,9 +76,9 @@ class Partner extends Collection implements BusinessPartner
      *
      * @return mixed
      */
-    public function getPartnerResponse($request = [])
+    public function getPartnerResponse(Request $request)
     {
-        return;
+        return ErrorPacket::create(Response::HTTP_BAD_REQUEST);
     }
 
 }
