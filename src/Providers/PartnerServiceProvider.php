@@ -1,6 +1,7 @@
 <?php namespace DreamFactory\Enterprise\Partner\Providers;
 
 use DreamFactory\Enterprise\Common\Providers\BaseServiceProvider;
+use DreamFactory\Enterprise\Partner\Facades\Partner;
 use DreamFactory\Enterprise\Partner\Managers\PartnerManager;
 
 /**
@@ -22,28 +23,28 @@ class PartnerServiceProvider extends BaseServiceProvider
     /** @inheritdoc */
     public function boot()
     {
-        $_configPath = realpath(__DIR__ . '/../../config');
+        $_configPath = realpath(__DIR__ . '/../../config') . DIRECTORY_SEPARATOR;
 
         //  Add our routes...
-        if (file_exists($_routeFile = $_configPath . DIRECTORY_SEPARATOR . 'routes.php')) {
+        if (file_exists($_routeFile = $_configPath . 'routes.php')) {
             //  Bind auth.partner
-            $this->singleton('auth.partner',
-                'DreamFactory\\Enterprise\\Partner\\Http\\Middleware\\AuthenticatePartner');
+            $this->singleton('auth.partner', 'DreamFactory\Enterprise\Partner\Http\Middleware\AuthenticatePartner');
 
             /** @noinspection PhpIncludeInspection */
             include $_routeFile;
         }
 
         //  Config
-        if (file_exists($_configFile = $_configPath . DIRECTORY_SEPARATOR . 'partner.php')) {
+        if (file_exists($_configFile = $_configPath . 'partner.php')) {
             $this->publishes([$_configFile => config_path('partner.php'),], 'config');
         }
 
-        $this->publishes([$_configPath . '/assets' => public_path('/vendor/dfe-partner/assets')], 'public');
+        $this->publishes([$_configPath . 'assets' => public_path('/vendor/dfe-partner/assets')], 'public');
 
         foreach (config('partner', []) as $_pid => $_config) {
             if (isset($_config['class'])) {
-                \Partner::register($_pid, new $_config['class']($_pid, $_config));
+                $_partner = new $_config['class']($_pid, $_config);
+                Partner::register($_pid, $_partner);
             }
         }
     }
