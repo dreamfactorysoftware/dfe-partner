@@ -88,10 +88,10 @@ class Partner extends Collection implements BusinessPartner
         return \Redirect::back();
 
         //  or return success in JSON
-        //return SuccessPacket::make(['stuff' => 'value'], Response::HTTP_OK);
+        //return SuccessPacket::create(['stuff' => 'value'], Response::HTTP_OK);
 
         //  or return error in JSON
-        //return ErrorPacket::create(Response::HTTP_BAD_REQUEST, 'You did something naughty.');
+        //return ErrorPacket::create(null, Response::HTTP_BAD_REQUEST, 'You did something naughty.');
     }
 
 }
