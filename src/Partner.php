@@ -4,6 +4,7 @@ use DreamFactory\Enterprise\Partner\Contracts\BrandDecorator;
 use DreamFactory\Enterprise\Partner\Contracts\BusinessPartner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Redirect;
 
 class Partner extends Collection implements BusinessPartner
 {
@@ -70,7 +71,7 @@ class Partner extends Collection implements BusinessPartner
     /**
      * Handle a partner event/request.
      *
-     * @param array $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return mixed
      */
@@ -81,17 +82,11 @@ class Partner extends Collection implements BusinessPartner
 
         //  either redirect somewhere else
         if (null !== ($_redirect = $this->get('redirect-uri'))) {
-            return \Redirect::to($_redirect);
+            return Redirect::to($_redirect);
         }
 
         //  or redirect back
-        return \Redirect::back();
-
-        //  or return success in JSON
-        //return SuccessPacket::create(['stuff' => 'value'], Response::HTTP_OK);
-
-        //  or return error in JSON
-        //return ErrorPacket::create(null, Response::HTTP_BAD_REQUEST, 'You did something naughty.');
+        return Redirect::back();
     }
 
 }

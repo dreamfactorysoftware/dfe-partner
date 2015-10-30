@@ -1,7 +1,9 @@
 <?php namespace DreamFactory\Enterprise\Partner\Http\Controllers;
 
 use DreamFactory\Enterprise\Common\Http\Controllers\BaseController;
+use DreamFactory\Enterprise\Partner\Facades\Partner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PartnerController extends BaseController
 {
@@ -25,10 +27,10 @@ class PartnerController extends BaseController
     public function handleRequest(Request $request, $pid)
     {
         try {
-            return \Partner::request($pid, $request);
+            return Partner::request($pid, $request);
         } catch (\Exception $_ex) {
             //  Log and bail
-            \Log::error('Exception handling partner request: ' . $_ex->getMessage());
+            Log::error('Exception handling partner request: ' . $_ex->getMessage());
 
             //  wtf
             abort(404);

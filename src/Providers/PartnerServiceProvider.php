@@ -2,6 +2,7 @@
 
 use DreamFactory\Enterprise\Common\Providers\BaseServiceProvider;
 use DreamFactory\Enterprise\Partner\Facades\Partner;
+use DreamFactory\Enterprise\Partner\Http\Middleware\AuthenticatePartner;
 use DreamFactory\Enterprise\Partner\Managers\PartnerManager;
 
 /**
@@ -28,7 +29,7 @@ class PartnerServiceProvider extends BaseServiceProvider
         //  Add our routes...
         if (file_exists($_routeFile = $_configPath . 'routes.php')) {
             //  Bind auth.partner
-            $this->singleton('auth.partner', 'DreamFactory\Enterprise\Partner\Http\Middleware\AuthenticatePartner');
+            $this->singleton('auth.partner', AuthenticatePartner::class);
 
             /** @noinspection PhpIncludeInspection */
             include $_routeFile;
@@ -63,5 +64,4 @@ class PartnerServiceProvider extends BaseServiceProvider
     {
         return array_merge(parent::provides(), ['auth.partner']);
     }
-
 }
