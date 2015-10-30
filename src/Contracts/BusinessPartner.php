@@ -25,7 +25,7 @@ interface BusinessPartner
     /**
      * Retrieves a single partner detail
      *
-     * @param string $key
+     * @param string     $key
      * @param mixed|null $default
      *
      * @return mixed
@@ -43,6 +43,7 @@ interface BusinessPartner
      * Handle a partner event/request.
      *
      * @param Request $request
+     *
      * @return mixed
      */
     public function getPartnerResponse(Request $request);

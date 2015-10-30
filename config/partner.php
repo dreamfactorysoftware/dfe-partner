@@ -33,14 +33,7 @@ return [
             //  A smaller, compact, copyright notice, if different from full
             //'copyright-minimal' => '&copy; ' . date('Y') . ' Verizon',
             //  Any copy for help/body of branding area
-            'copy'      => <<< HTML
-<p>You really need to click the button down there.</p><p class="pull-right">
-<form method="POST" action="/partner/partner-id">
-    <input type="hidden" name="command" value="command-1">
-    <button type="button" class="btn btn-warning">Do it <strong>NOW</strong>!</button></p><div style="clear: both"></div>
-</form>
-HTML
-            ,
+            'copy'      => '<p>You really need to click the button down there.</p><p class="pull-right"><form method="POST" action="/partner/partner-id"><input type="hidden" name="command" value="command-1"><button type="button" class="btn btn-warning">Do it <strong>NOW</strong>!</button></p><div style="clear: both"></div></form>',
             //  Compact version of copy, if any
             //'copy-minimal'      => '<span>Hi</span>',
         ],

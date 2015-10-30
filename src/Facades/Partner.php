@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static mixed config(string $key = null, mixed $default = null);
- * @method static BrandDecorator brand(string $partnerId);
- * @method static PartnerManager register(string $partnerId, BusinessPartner $partner);
- * @method static PartnerManager unregister(string $partnerId);
- * @method static BusinessPartner resolve(string $partnerId);
- * @method static mixed request(string $partnerId, Request $request);
+ * @method static mixed config($key = null, $default = null);
+ * @method static BrandDecorator brand($partnerId);
+ * @method static PartnerManager register($partnerId, BusinessPartner $partner);
+ * @method static PartnerManager unregister($partnerId);
+ * @method static BusinessPartner resolve($partnerId);
+ * @method static mixed request($partnerId, Request $request);
  *
  */
 class Partner extends Facade

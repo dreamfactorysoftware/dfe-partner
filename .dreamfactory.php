@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of DreamFactory Enterprise(tm) Partner Library
+ * This file is part of DreamFactory Enterprise(tm) Database Library
  *
  * Copyright 2012-2015 DreamFactory Software, Inc. All Rights Reserved.
  *

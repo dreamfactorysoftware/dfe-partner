@@ -18,10 +18,8 @@ class PartnerBrand extends Collection implements BrandDecorator
      */
     public function getLogo($asIcon = false)
     {
-        return $this->get(
-            $asIcon ? 'icon' : 'logo',
-            $this->get('logo')
-        );
+        return $this->get($asIcon ? 'icon' : 'logo',
+            $this->get('logo'));
     }
 
     /**
@@ -81,11 +79,7 @@ class PartnerBrand extends Collection implements BrandDecorator
      */
     protected function getSizedDetail($key, $minimal = false, $defaultKey = null)
     {
-        return $this->get(
-            $minimal
-                ? $key . '-minimal'
-                : $key,
-            $this->get($defaultKey ?: $key)
-        );
+        return $this->get($minimal ? $key . '-minimal' : $key,
+            $this->get($defaultKey ?: $key));
     }
 }
